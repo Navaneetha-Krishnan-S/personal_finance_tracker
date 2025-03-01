@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .message {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Sign Up</h2>
+
+    <!-- Show error message -->
+    <p th:if="${errorMessage}" class="message error" th:text="${errorMessage}"></p>
+
+    <!-- Show success message -->
+    <p th:if="${successMessage}" class="message success" th:text="${successMessage}"></p>
+
+    <form th:action="@{/signup}" th:object="${user}" method="post">
+        <label for="username">Username</label>
+        <input type="text" id="username" th:field="*{username}" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <p class="login-link">Already have an account? <a href="/login">Login here</a></p>
+</div>
+
+</body>
+</html>
